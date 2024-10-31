@@ -13,6 +13,6 @@ public:
 	std::vector<householder>generate_list;
 	Generate_parson();
 	~Generate_parson();
-	void generate_user_func(std::string, bool, long int);
+	void generate_user_func(std::string, long int);
 };
 

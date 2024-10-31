@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{6e795cde-4076-4f3c-adb6-858ba2cdf162}</ProjectGuid>
-    <RootNamespace>仮想PT</RootNamespace>
+    <ProjectGuid>{4b149f74-e24d-41f6-a91c-519ae65fc305}</ProjectGuid>
+    <RootNamespace>temp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -104,8 +104,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,8 +118,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,28 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="area.cpp" />
-    <ClCompile Include="estimate_move.cpp" />
-    <ClCompile Include="func.cpp" />
-    <ClCompile Include="Generate_parson.cpp" />
-    <ClCompile Include="householder.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="personal.cpp" />
-    <ClCompile Include="setting_by_transportation.cpp" />
-    <ClCompile Include="template.cpp" />
-    <ClCompile Include="visitors.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="area.h" />
-    <ClInclude Include="enums.h" />
-    <ClInclude Include="estimate_move.h" />
-    <ClInclude Include="func.h" />
-    <ClInclude Include="Generate_parson.h" />
-    <ClInclude Include="householder.h" />
-    <ClInclude Include="personal.h" />
-    <ClInclude Include="setting_by_transportation.h" />
-    <ClInclude Include="template.h" />
-    <ClInclude Include="visitors.h" />
+    <ClCompile Include="FileName.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

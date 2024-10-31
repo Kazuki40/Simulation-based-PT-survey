@@ -5,19 +5,17 @@
 class householder
 {
 private:
-	int Number_of_household_members;
-	int Number_of_vehicle;
-	int Number_of_cycle;
-public:
 
-	int getter_number_of_household_members();
-	int getter_number_of_vehicle();
+public:
 
 	householder();
 	~householder();
 
-	std::vector<personal> personal_list;
+	std::vector<personal> personal_list;//¢‘Ñ‚Ìl”•ª‚Ìl•¨
 
+	int Number_of_household_members;//¢‘Ñ‚Ìl”
+	int Number_of_vehicle;//¢‘Ñ‚ÌÔ‚Ì”
+	int Number_of_cycle;//¢‘Ñ‚Ì©“]Ô‚Ì”
 
 };
 

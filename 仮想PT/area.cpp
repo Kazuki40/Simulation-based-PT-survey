@@ -1,3 +1,4 @@
+#pragma once
 #include "area.h"
 #include "template.h"
 #include<iostream>
@@ -5,16 +6,26 @@
 #include<map>
 #include<unordered_map>
 #include <limits>
+#include<numbers>
+#include<numeric>
+
 
 area::area() {
 	this->Number_of_areas = 0;
 	this->X_distance_of_Area = 0;
 	this->Y_distance_of_Area = 0;
+
+}
+
+void area::set_start() {
 	create_area();
 	calculation_of_costs();
 }
 
 area::~area() {
+
+	std::cout << "delete area" << std::endl;
+
 }
 
 
@@ -35,6 +46,8 @@ void area::overall_value() {
 	}
 
 	this->Area_list_name.resize(this->X_distance_of_Area, std::vector<std::string>(this->Y_distance_of_Area, " "));
+
+	//x，ｙ方向の設定
 	return;
 }
 
@@ -49,7 +62,7 @@ void area::create_area_detail() {
 		std::string temp_area_name;
 		long int temp_x;
 		long int temp_y;
-
+		//場所の設定
 		std::cin >> temp_area_name >> temp_x >> temp_y;
 
 		auto temp_tuple = std::make_tuple(temp_x, temp_y);
@@ -98,6 +111,8 @@ void area::create_area() {
 	//エリアの情報を表示
 	custom_function::plot_area(this->Area_list_name);
 
+	//詳細設定
+	detail_area();
 	return;
 }
 
@@ -129,6 +144,8 @@ void area::calculation_of_costs() {
 
 	plot_cost_func(this->Cost_matrix, this->reverse_area_name);
 
+	return;
+
 }
 
 void area::plot_cost_func(std::vector<std::vector<long double>>& table, std::unordered_map< long int, std::string>& name_table) {
@@ -157,4 +174,110 @@ void area::plot_cost_func(std::vector<std::vector<long double>>& table, std::uno
 
 	return;
 
+};
+
+void area::detail_Plac_area() {
+	//確率の設定
+	probability_of_workplace_area.resize(this->Number_of_areas);//職場のエリアの確率
+	probability_of_residence_area.resize(this->Number_of_areas);//住居のエリアの確率
+	probability_of_shopping_area.resize(this->Number_of_areas);//買い物のエリアの確率
+	probability_of_school_area_elementary.resize(this->Number_of_areas);//学校のエリアの確率
+	probability_of_school_area_JHS.resize(this->Number_of_areas);//学校のエリアの確率
+	probability_of_school_area_HS.resize(this->Number_of_areas);//学校のエリアの確率
+	probability_of_school_area_university.resize(this->Number_of_areas);//学校のエリアの確率
+	probability_of_hospital_area.resize(this->Number_of_areas);//病院のエリアの確率
+	probability_of_sightseeing_area.resize(this->Number_of_areas);//観光のエリアの確率
+	probability_of_other_area.resize(this->Number_of_areas);//観光のエリアの確率
+	return;
+
 }
+
+void area::detail_area() {
+
+	//初期化
+	detail_Plac_area();
+
+	std::vector<long int> workplace_area(this->Number_of_areas, 0);
+	std::vector<long int> residence_area(this->Number_of_areas, 0);
+	std::vector<long int> shopping_area(this->Number_of_areas, 0);
+	std::vector<long int> school_area_e(this->Number_of_areas, 0);
+	std::vector<long int> school_area_j(this->Number_of_areas, 0);
+	std::vector<long int> school_area_h(this->Number_of_areas, 0);
+	std::vector<long int> school_area_u(this->Number_of_areas, 0);
+	std::vector<long int> hospital_area(this->Number_of_areas, 0);
+	std::vector<long int> sightseeing_area(this->Number_of_areas, 0);
+	std::vector<long int> other_area(this->Number_of_areas, 0);
+
+
+	for (auto loop = 0; loop < probability_of_workplace_area.size(); loop++) {
+
+		//エリアの名前
+		std::cout << "Setting " << reverse_area_name[loop] << std::endl;
+
+		std::cout << "wight of workplace (long int):";
+		std::cin >> workplace_area[loop];
+
+		std::cout << "wight of residence (long int):";
+		std::cin >> residence_area[loop];
+
+		std::cout << "wight of shopping (long int):";
+		std::cin >> shopping_area[loop];
+
+		std::cout << "wight of school elementary (long int):";
+		std::cin >> school_area_e[loop];
+		std::cout << "wight of school JHS(long int):";
+		std::cin >> school_area_j[loop];
+		std::cout << "wight of school HS(long int):";
+		std::cin >> school_area_h[loop];
+		std::cout << "wight of school university(long int):";
+		std::cin >> school_area_u[loop];
+
+		std::cout << "wight of hospital (long int):";
+		std::cin >> hospital_area[loop];
+
+		std::cout << "wight of sightseeing (long int):";
+		std::cin >> sightseeing_area[loop];
+
+		std::cout << "wight of other (long int):";
+		std::cin >> other_area[loop];
+
+	}
+
+	//累積和
+	long int workplace_area_sum = std::accumulate(workplace_area.begin(), workplace_area.end(), 0);
+	long int residence_area_sum = std::accumulate(residence_area.begin(), residence_area.end(), 0);
+	long int shopping_area_sum = std::accumulate(shopping_area.begin(), shopping_area.end(), 0);
+	long int school_area_sum_e = std::accumulate(school_area_e.begin(), school_area_e.end(), 0);
+	long int school_area_sum_j = std::accumulate(school_area_j.begin(), school_area_j.end(), 0);
+	long int school_area_sum_h = std::accumulate(school_area_h.begin(), school_area_h.end(), 0);
+	long int school_area_sum_u = std::accumulate(school_area_u.begin(), school_area_u.end(), 0);
+	long int hospital_area_sum = std::accumulate(hospital_area.begin(), hospital_area.end(), 0);
+	long int sightseeing_area_sum = std::accumulate(sightseeing_area.begin(), sightseeing_area.end(), 0);
+	long int other_area_sum = std::accumulate(other_area.begin(), other_area.end(), 0);
+
+	//確率の設定
+	auto estimate_prob_func = [=](std::vector<long int>vec, long int num) -> std::vector<double> {
+		std::vector<double>res(vec.size(), 0.0);
+		for (auto loop = 0; loop < vec.size(); loop++) {
+			res[loop] = ((double)vec[loop] / (double)num);
+		}
+		return res;
+		};
+
+
+	//答え
+	this->probability_of_workplace_area = estimate_prob_func(workplace_area, workplace_area_sum);
+	this->probability_of_residence_area = estimate_prob_func(residence_area, residence_area_sum);
+	this->probability_of_shopping_area = estimate_prob_func(shopping_area, shopping_area_sum);
+	this->probability_of_school_area_elementary = estimate_prob_func(school_area_e, school_area_sum_e);
+	this->probability_of_school_area_JHS = estimate_prob_func(school_area_j, school_area_sum_j);
+	this->probability_of_school_area_HS = estimate_prob_func(school_area_h, school_area_sum_h);
+	this->probability_of_school_area_university = estimate_prob_func(school_area_u, school_area_sum_u);
+	this->probability_of_hospital_area = estimate_prob_func(hospital_area, hospital_area_sum);
+	this->probability_of_sightseeing_area = estimate_prob_func(sightseeing_area, sightseeing_area_sum);
+	this->probability_of_other_area = estimate_prob_func(other_area, other_area_sum);
+
+
+	return;
+
+};
